@@ -1,3 +1,3 @@
 # VibrationsProject01
-First project containing solutions to problems in IITM AS2080* project 1 assignment
+First project containing solutions to problems in my project assignment
 The questions are given in the "questions.pdf" file
