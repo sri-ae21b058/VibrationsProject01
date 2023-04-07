@@ -36,7 +36,7 @@ def total_soln(F0, k, m, c,force_freq,t,x0,v0):
         return 0
     
 def plot_soln(F0, k, m, c,force_freq,t,x0,v0,fignum):
-    # F0 = initial force, k = spring constant, m = mass, c = damping coefficient, t = time
+    # F0 = initial force, k = spring constant, m = mass, c = damping coefficient, t = time, fignum = figure number, x0 = initial displacement, v0 = initial velocity
     # plots the total force at time t
     plt.figure(fignum+'total solution')
     plt.plot(t,total_soln(F0, k, m, c,force_freq,t,x0,v0))
