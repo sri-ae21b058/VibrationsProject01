@@ -1,6 +1,6 @@
 # VibrationsProject01
 First project containing solutions to problems in my project assignment
-##Questions
+## Questions:
 The questions are given below:
 
 1. Derive and plot the free-vibration response of a viscously damped single-degree-of-freedom
