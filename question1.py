@@ -4,7 +4,7 @@ def charac_roots(m,k,c):
     #m = mass, k = spring constant, c = damping coefficient
     #returns the roots of the characteristic equation: lambda^2 + 2*lambda*c/m + k/m = 0
     roots = np.zeros(2,dtype=complex)
-    roots[1] = (-c + np.emath.sqrt(c**2 - 4*m*k))/(2*m)
+    roots[1] = (-c + np.emath.sqrt(c**2 - 4*m*k))/(2*m) #np.emath.sqrt gives the complex square root
     roots[0] = (-c - np.emath.sqrt(c**2 - 4*m*k))/(2*m)
     return roots
 
@@ -26,7 +26,7 @@ def sol_eqn(x0,v0,t,m,k,c):
         else:# overdamped case
             A=np.array([[1,1],[roots[0],roots[1]]])
             B=np.array([x0,v0])
-            const=np.linalg.inv(A).dot(B)
+            const=np.linalg.inv(A).dot(B) #finding the constants of the solution
             return const[0]*np.exp(roots[0]*t)+const[1]*np.exp(roots[1]*t)#x(t)=C1*e^(lambda1t)+C2*e^(lambda2t)
 
 
