@@ -1,6 +1,12 @@
 from matplotlib import pyplot as plt
 import numpy as np
-from question1 import charac_roots
+def charac_roots(m,k,c):
+    #m = mass, k = spring constant, c = damping coefficient
+    #returns the roots of the characteristic equation: lambda^2 + 2*lambda*c/m + k/m = 0
+    roots = np.zeros(2,dtype=complex)
+    roots[1] = (-c + np.emath.sqrt(c**2 - 4*m*k))/(2*m)
+    roots[0] = (-c - np.emath.sqrt(c**2 - 4*m*k))/(2*m)
+    return roots
 def steady_state_prop(F0, k, m, c,force_freq):
     # F0 = initial force, k = spring constant, m = mass, c = damping coefficient, t = time
     # returns the steady state amplitude and phase angle
