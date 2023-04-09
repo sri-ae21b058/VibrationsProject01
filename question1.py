@@ -10,7 +10,7 @@ def charac_roots(m,k,c):
 
 def sol_eqn(x0,v0,t,m,k,c):
     #x0 = initial position, v0 = initial velocity, t = time, m = mass, k = spring constant, c = damping coefficient
-    #returns the position and velocity of the mass at time t
+    #returns the displacement and velocity of the mass at time t
     roots = charac_roots(m,k,c)
     if roots[0].imag != 0 and roots[1].imag != 0:#complex roots case underdamped
         A = np.array([[1,1],[roots[0],roots[1]]],dtype=complex)
