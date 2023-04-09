@@ -1,5 +1,5 @@
 # VibrationsProject01
-First project containing solutions to problems in my project assignment
+First project containing solutions to problems in my assignment
 ## Questions:
 The questions are given below:
 
