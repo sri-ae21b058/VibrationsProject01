@@ -21,7 +21,7 @@ def steady_state_soln(F0, k, m, c,force_freq,t):
     # F0 = initial force, k = spring constant, m = mass, c = damping coefficient, t = time
     # returns the steady state solution at time t
     [X_steady,phi_steady]=steady_state_prop(F0, k, m, c,force_freq)
-    return X_steady*np.cos(force_freq*t+phi_steady)
+    return X_steady*np.cos(force_freq*t-phi_steady)
 
 def total_soln(F0, k, m, c,force_freq,t,x0,v0):
     # F0 = initial force, k = spring constant, m = mass, c = damping coefficient, t = time
@@ -31,13 +31,13 @@ def total_soln(F0, k, m, c,force_freq,t,x0,v0):
     [X_steady,phi_steady]=steady_state_prop(F0, k, m, c,force_freq)
     if roots[0].imag != 0 and roots[1].imag != 0:#complex roots underdamped case
         '''we use the solution of the homogeneous equation x(t)=e^(lambda1t)(X_0cos(omega_d*t+phi_0))'''
-        X_0=np.sqrt((x0-X_steady*np.cos(phi_steady))**2+((v0-X_steady*np.sin(phi_steady)*force_freq+roots[0].real*(x0-X_steady*np.cos(phi_steady)))/roots[0].imag)**2)
+        X_0=np.sqrt((x0-X_steady*np.cos(phi_steady))**2+((v0-X_steady*np.sin(phi_steady)*force_freq-roots[0].real*(x0-X_steady*np.cos(phi_steady)))/roots[0].imag)**2)
         if (roots[0].imag*(x0-X_steady*np.cos(phi_steady)))==0:#if the denominator is zero, we use the limit of the ratio as the phase angle
             phi_0=np.pi/2
-            return X_0*np.exp(roots[0].real*t)*np.sin(roots[0].imag*t)+X_steady*np.cos(force_freq*t+phi_steady)
+            return X_0*np.exp(roots[0].real*t)*np.sin(roots[0].imag*t)+X_steady*np.cos(force_freq*t-phi_steady)
         else:
             phi_0=np.arctan((v0-X_steady*np.sin(phi_steady)*force_freq+roots[0].real*(x0-X_steady*np.cos(phi_steady)))/(roots[0].imag*(x0-X_steady*np.cos(phi_steady))))
-            return X_0*np.exp(roots[0].real*t)*np.cos(roots[0].imag*t-phi_0)+X_steady*np.cos(force_freq*t+phi_steady)
+            return X_0*np.exp(roots[0].real*t)*np.cos(roots[0].imag*t-phi_0)+X_steady*np.cos(force_freq*t-phi_steady)
     else:
         return 0
     
@@ -49,6 +49,7 @@ def plot_soln(F0, k, m, c,force_freq,t,x0,v0,fignum):
     plt.xlabel('Time (s)')
     plt.ylabel('Displacement (m)')
     plt.title('Total solution of the forced damped harmonic vibration F(t)='+str(F0)+'cos('+str(force_freq)+'t)')
+    plt.grid()
     plt.savefig(fignum+'total solution.png')
     plt.show()
     plt.figure(fignum+'steady state solution')
@@ -56,6 +57,7 @@ def plot_soln(F0, k, m, c,force_freq,t,x0,v0,fignum):
     plt.xlabel('Time (s)')
     plt.ylabel('Displacement (m)')
     plt.title('Steady state solution of the forced damped harmonic vibration F(t)='+str(F0)+'cos('+str(force_freq)+'t)',fontdict={'fontsize': 10})
+    plt.grid()
     plt.savefig(fignum+'steady state solution.png')
     plt.show()
 
