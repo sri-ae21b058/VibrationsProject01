@@ -36,7 +36,7 @@ def total_soln(F0, k, m, c,force_freq,t,x0,v0):
             phi_0=np.pi/2
             return X_0*np.exp(roots[0].real*t)*np.sin(roots[0].imag*t)+X_steady*np.cos(force_freq*t-phi_steady)
         else:
-            phi_0=np.arctan((v0-X_steady*np.sin(phi_steady)*force_freq+roots[0].real*(x0-X_steady*np.cos(phi_steady)))/(roots[0].imag*(x0-X_steady*np.cos(phi_steady))))
+            phi_0=np.arctan((v0-X_steady*np.sin(phi_steady)*force_freq-roots[0].real*(x0-X_steady*np.cos(phi_steady)))/(roots[0].imag*(x0-X_steady*np.cos(phi_steady))))
             return X_0*np.exp(roots[0].real*t)*np.cos(roots[0].imag*t-phi_0)+X_steady*np.cos(force_freq*t-phi_steady)
     else:
         return 0
