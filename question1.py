@@ -19,7 +19,7 @@ def sol_eqn(x0,v0,t,m,k,c):
         return np.exp(roots[0].real*t)*(const[0]*np.cos(roots[0].imag*t)+const[1]*np.sin(roots[0].imag*t))#x(t)=e^(lambda1t)(C1*cos(omega1t)+C2*sin(omega1t))
     elif roots[0].imag == 0 and roots[1].imag == 0: 
         if roots[0].real == roots[1].real:#single root case Critically damped
-            A=np.array([[1,0],[roots[0],roots[0]+1]])
+            A=np.array([[1,0],[roots[0],1]])
             B=np.array([x0,v0])
             const=np.linalg.inv(A).dot(B) #finding the constants of the solution
             return const[0]*np.exp(roots[0].real*t)+const[1]*t*np.exp(roots[0].real*t)#x(t)=e^(lambda1t)(C1+C2t)
