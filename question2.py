@@ -55,7 +55,7 @@ def plot_soln(F0, k, m, c,force_freq,t,x0,v0,fignum):
     plt.plot(t,steady_state_soln(F0, k, m, c,force_freq,t))
     plt.xlabel('Time (s)')
     plt.ylabel('Displacement (m)')
-    plt.title('Steady state solution of the forced damped harmonic vibration F(t)='+str(F0)+'cos('+str(force_freq)+'t)')
+    plt.title('Steady state solution of the forced damped harmonic vibration F(t)='+str(F0)+'cos('+str(force_freq)+'t)',fontdict={'fontsize': 10})
     plt.savefig(fignum+'steady state solution.png')
     plt.show()
 
