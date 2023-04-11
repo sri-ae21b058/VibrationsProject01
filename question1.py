@@ -13,7 +13,7 @@ def sol_eqn(x0,v0,t,m,k,c):
     #returns the displacement and velocity of the mass at time t
     roots = charac_roots(m,k,c)
     if roots[0].imag != 0 and roots[1].imag != 0:#complex roots case underdamped
-        A = np.array([[1,1],[roots[0],roots[1]]],dtype=complex)
+        A = np.array([[1,0],[roots[0].real,roots[1].imag]])
         B = np.array([x0,v0])
         const=np.linalg.inv(A).dot(B) #finding the constants of the solution using inverse matrix of A and multiplying by B
         return np.exp(roots[0].real*t)*(const[0]*np.cos(roots[0].imag*t)+const[1]*np.sin(roots[0].imag*t))#x(t)=e^(lambda1t)(C1*cos(omega1t)+C2*sin(omega1t))
@@ -49,4 +49,5 @@ k=2500
 c=[0,100,200,400]
 nfig=['1.1','1.2','1.3','1.4']
 for i in range(len(c)):
+    print(charac_roots(m,k,c[i]))
     plot_sol(x0,v0,t,m,k,c[i],nfig[i])
