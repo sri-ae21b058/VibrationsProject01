@@ -43,7 +43,7 @@ def plot_sol(x0,v0,t,m,k,c,fignum): #plotting the solution, we only need the rea
 
 x0=0.15#given initial conditions
 v0=-20
-t=np.linspace(0,2,1000)
+t=np.linspace(0,1,1000)
 m=4#given parameters of mass, spring constant and damping coefficients
 k=2500
 c=[0,100,200,400]
