@@ -21,7 +21,6 @@ def get_modal_shapes(x0,v0,m,k,t,f_modal):
     r=np.zeros(2)
     for i in range(2):
         r[i]=((k[1]+k[0])-m[0]*f_modal[i]**2)/k[1]
-    print(r)
     A=np.array([[1,1],[r[0],r[1]]])
     B=np.array([x0[0],x0[1]])
     Xcos=np.linalg.inv(A).dot(B)
@@ -44,6 +43,7 @@ def plot_modal_shapes(x0,v0,m,k,t,f_modal,fignum):
     plt.xlabel('Time (s)')
     plt.ylabel('Displacement (m)')
     plt.title(fignum+': Displacement vs Time')
+    plt.grid()
     plt.savefig(fignum+' Displacement vs Time.png')
     plt.show()
     
