@@ -2,7 +2,7 @@ from matplotlib import pyplot as plt
 import numpy as np
 x0=[[1,2],[1,0]]#initial displacements
 v0=[[1,-2],[-1,0]]#initial velocities
-m=[1,2]#masses
+m=[2,1]#masses
 k=[1000,500]#spring constants
 
 def get_modal_freq(m,k):
