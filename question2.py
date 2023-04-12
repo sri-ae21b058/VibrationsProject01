@@ -32,6 +32,7 @@ def total_soln(F0, k, m, c,force_freq,t,x0,v0):
     if roots[0].imag != 0 and roots[1].imag != 0:#complex roots underdamped case
         '''we use the solution of the homogeneous equation x(t)=e^(lambda1t)(X_0cos(omega_d*t+phi_0))'''
         X_0=np.sqrt((x0-X_steady*np.cos(phi_steady))**2+((v0-X_steady*np.sin(phi_steady)*force_freq-roots[0].real*(x0-X_steady*np.cos(phi_steady)))/roots[0].imag)**2)
+
         if (roots[0].imag*(x0-X_steady*np.cos(phi_steady)))==0:#if the denominator is zero, we use the limit of the ratio as the phase angle
             phi_0=np.pi/2
             return X_0*np.exp(roots[0].real*t)*np.sin(roots[0].imag*t)+X_steady*np.cos(force_freq*t-phi_steady)
@@ -71,6 +72,7 @@ force_freq=[10,20]#frequency of the force
 t=np.linspace(0,2,1000)#time
 nfig=['2.1','2.2']
 for i in range(2):
+    print (steady_state_prop(F0, k, m, c,force_freq[i]))
     plot_soln(F0, k, m, c,force_freq[i],t,x0,v0,nfig[i])
 
 
