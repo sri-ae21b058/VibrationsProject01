@@ -8,11 +8,9 @@ k=[1000,500]#spring constants
 def get_modal_freq(m,k):
     #returns the modal frequencies for the system of equations : m[0]*x''[0]+(k[0]+k[1])*x[0]-k[1]*x[1]=0, m[1]*x''[1]+(k[1])*x[1]-k[1]*x[0]=0
     f_modal=np.zeros(2)
-    a=m[1]*m[0]
-    b=-(m[1]*(k[0]+k[1])+m[0]*k[1])
-    c=(k[0]+k[1])*k[1]-k[1]**2
-    f_modal[0]=np.sqrt((-b+np.sqrt(b**2-4*a*c))/(2*a))
-    f_modal[1]=np.sqrt((-b-np.sqrt(b**2-4*a*c))/(2*a))
+    M=np.array([[m[0],0],[0,m[1]]])
+    K=np.array([[k[0]+k[1],-k[1]],[-k[1],k[1]]])
+    f_modal=np.sqrt(np.linalg.eigvals(np.linalg.inv(M).dot(K)))
     return f_modal
 
 def get_modal_shapes(x0,v0,m,k,t,f_modal):
