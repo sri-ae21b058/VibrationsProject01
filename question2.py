@@ -72,7 +72,6 @@ force_freq=[10,20]#frequency of the force
 t=np.linspace(0,2,1000)#time
 nfig=['2.1','2.2']
 for i in range(2):
-    print (steady_state_prop(F0, k, m, c,force_freq[i]))
     plot_soln(F0, k, m, c,force_freq[i],t,x0,v0,nfig[i])
 
 
