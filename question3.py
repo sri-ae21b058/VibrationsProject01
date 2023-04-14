@@ -26,7 +26,12 @@ def get_modal_shapes(x0,v0,m,k,t,f_modal):
     B=np.array([v0[0],v0[1]])
     Xsin=np.linalg.inv(A).dot(B)
     X=np.array([np.sqrt(Xcos[0]**2+Xsin[0]**2), np.sqrt(Xcos[1]**2+Xsin[1]**2)])
-    phi=np.array([np.arctan(Xsin[0]/Xcos[0]), np.arctan(Xsin[1]/Xcos[1])])
+    if Xcos[0]==0: #in case of division by zero
+        phi=np.array([np.pi/2, np.arctan(Xsin[1]/Xcos[1])])
+    elif Xcos[1]==0:
+        phi=np.array([np.arctan(Xsin[0]/Xcos[0]), np.pi/2])
+    else:
+        phi=np.array([np.arctan(Xsin[0]/Xcos[0]), np.arctan(Xsin[1]/Xcos[1])])
     x=np.zeros(2,dtype=object)
     x[0]=X[0]*np.cos(f_modal[0]*t+phi[0])+X[1]*np.cos(f_modal[1]*t+phi[1])
     x[1]=r[0]*X[0]*np.cos(f_modal[0]*t+phi[0])+r[1]*X[1]*np.cos(f_modal[1]*t+phi[1])
